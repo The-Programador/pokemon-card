@@ -50,7 +50,7 @@ function show() {
 function search() {
     for(base; base < limit; base++) {
         if(base < count) {
-            getPokemonData(pokemonsList[base].name, base)
+            constructMiniCard(pokemonsList[base].name, base)
             if(base === (count-1)) {
                 break
             }
@@ -63,15 +63,14 @@ function search() {
 function search2(content) {
     for(base; base < limit; base++) {
         if(base < count) {
-            getPokemonData(content[base].pokemon.name, base)
+            constructMiniCard(content[base].pokemon.name, base)
         }
     }
     setTimeout(show, 98) //Não muito útil :/
 }
 
-//Isso aqui é assincronismo!!
-//OTIMIZAR ESSA FUNÇÂO
-const getPokemonData = async (_namePokemon, id) => {
+
+const constructMiniCard = async (_namePokemon, id) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${_namePokemon}`)
     .then(response => response.json())
 
@@ -98,6 +97,7 @@ const getPokemonData = async (_namePokemon, id) => {
     })
 }
 
+//Filtra dados específicos para showModal()
 const filterDataPokemon = _content => {
     let info = []
     //Basic informations
@@ -127,6 +127,7 @@ const filterDataPokemon = _content => {
     return info;
 }
 
+//Constrói o modal de informações detalhadas para os mini-cards
 const showModal = (id) => {
     hiddenScrollBars()
     if(!isNaN(id)) {
@@ -367,6 +368,7 @@ const showModal = (id) => {
     })
 }
 
+//Fecha o modal de informações detalhadas do mini-card
 const closeModal = () => {
     let overlay = document.getElementsByClassName('overlay')[0]
     let modal = document.getElementsByClassName('modal')[0];
@@ -385,22 +387,24 @@ function showScrollBars() {
     document.body.scroll = "no"; // IE
 }
 
+//Gera o card pokémon pesquisado
 function searchBox() {
     let body = document.getElementsByClassName('box')[0]
     let content = document.getElementById('search').value.toLowerCase()
     let button = document.getElementById('gerar')
     if(button !== null)
-        button.remove()
+        button.style.display = 'none'
     body.innerHTML = ''
     if(!isNaN(content)) {
         content = Number(content)
     }
     body.insertAdjacentHTML('beforeend', CARD)
-    getPokemonData(content, 0)
+    constructMiniCard(content, 0)
     show()
 
 }
 
+//Constrói o menu de filtro por tipo de pokémon
 const constructFilter = () => {
     let boxFilter = document.getElementsByClassName('box-filter')[0]
     let typeAll = document.createElement('p')
@@ -431,6 +435,7 @@ const constructFilter = () => {
     })
 }
 
+//Filtra pokémons por um tipo
 const filterType = (typeName) => {
     let button = document.getElementById('gerar')
     let body = document.getElementsByClassName('box')[0]
@@ -439,6 +444,7 @@ const filterType = (typeName) => {
     fetch(`https://pokeapi.co/api/v2/type/${typeName}`)
     .then(response => response.json())
     .then(data => {
+        console.log(data)
         base = 0
         limit = data.pokemon.length
         gerar(data.pokemon.length, data.pokemon, false)

@@ -1,3 +1,4 @@
+//exibe a caixa de seleção de nomes de pokémon
 function showMenu(id) {
     let boxmenu = document.getElementsByClassName('menu')[id];
     console.log(boxmenu)
@@ -74,7 +75,7 @@ async function loadNamePokemon(id) {
 
 loadNamePokemon()
 
-//Filtra o nome "pokémon" buscado do menu.
+//Filtra o nome "pokémon" buscado no menu.
 const filterName = (id) => {
     let box = document.getElementsByTagName('input')[id];
     let boxValue = document.getElementsByTagName('input')[id].value;
