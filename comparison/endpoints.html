@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Endpoints</title>
+   <style>
+      body {
+         background-color: rgb(58, 58, 58);
+      }
+
+      h1 {
+         background-color: rgb(191, 255, 247);
+         display: block;
+         width: fit-content;
+         margin: 20px auto;
+         padding: 20px;
+         border-radius: 20px;
+         color: rgba(21, 78, 16, 0.671);
+         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      }      
+
+      a {
+         padding: 3px;
+         color: rgb(9, 27, 87);
+         font-size: 1.2em;
+         font-variant: small-caps;
+         font-family: Arial, Helvetica, sans-serif;
+         list-style: none;
+         background-color: whitesmoke;
+         text-align: center;
+         max-width: 400px;
+         margin: 5px auto;
+         text-decoration: none;
+         border-radius: 20px;
+      }
+
+      a:hover {
+         color: firebrick;
+      }
+   </style>
+</head>
+<body>
+   <h1>Endpoints da POKEAPI</h1>
+   <script>
+      fetch('https://pokeapi.co/api/v2/')
+      .then(response => response.json())
+      .then(data => {
+         let body = document.getElementsByTagName('body')[0]
+         for(let elemement in data) {
+            let link = document.createElement('a')
+            link.style.display = 'block'
+            link.textContent = elemement
+            link.href = data[elemement]
+            body.appendChild(link)
+         }
+      })
+   </script>
+</body>
+</html>

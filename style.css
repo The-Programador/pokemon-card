@@ -1,0 +1,337 @@
+@charset 'UTF-8';
+
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    overflow: auto;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+
+:root {
+    --font-main: 'Hammersmith One', sans-serif;
+    --card-pokemon-title-color: #424242;
+    --width-input: 250px;
+    --color1: #102E6F;
+    --color2: #0C68B2;
+    --color3: #FEC603;
+    --color4: #F4614D;
+    --color5: #DDDDDD;
+    --semi-not-highlight: #646464;;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+		transform: rotate(360deg);
+	}
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background-color: white;
+    font-family: Alata, sans-serif;
+}
+
+.overlay {
+    flex: 1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.300);
+}
+
+.modal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: whitesmoke;
+    margin: 40px auto;
+    padding-bottom: 20px;
+    max-width: 500px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.247);
+}
+
+.sub-modal-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+    border-radius: 5px;
+}
+
+/*Esse é um nome importante para motores de busca!*/
+.sub-modal-card::before {
+    content: 'Chain Evolution';
+    text-align: center;
+    padding: 10px;
+    color: var(--color3);
+}
+
+#search-box {
+    display: flex;
+    align-items: center;
+    background-color: #0C68B2;
+    padding: 20px 10px;
+}
+
+#search-box input{
+    color: #102E6F;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+#search-box:hover > :first-child {
+    color: #F4614D;   
+}
+
+.button-search {
+    color: var(--color4);
+    height: 44px;
+}
+
+.button-search:hover {
+    background-color: var(--color4);
+}
+
+.box-link {
+    background-color: var(--color5);
+    color: var(--color5);
+    margin-left: 50px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.box-link > a {
+    color: var(--color4);
+}
+
+/*OTIMIZAR TUDO!!!*/
+button {
+    font-size: 1em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    padding: 5px;
+}
+
+button:hover{
+    background-color: #0C68B2;
+    color: white;
+}
+
+#gerar {
+    font-size: 1em;
+    margin: 20px auto 40px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 60px;
+    width: 150px;
+    padding: 20px 5px;
+    overflow: hidden;
+}
+
+.button-close {
+    padding: 0;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    margin: 0;
+    border-radius: 100%;
+    z-index: 3;
+}
+
+input {
+    font-size: 1.1em;
+    text-align: center;
+    font-family: Alata, sans-serif;
+}
+
+.box-main {
+    display: flex;
+    border-bottom: 1px solid var(--color5);
+}
+
+.box {
+    width: 900px;
+    margin: 25px auto 0;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 30px;
+    padding-bottom: 30px;
+    padding-top: 10px;
+}
+
+.box-filter {
+    background-color: whitesmoke;
+    position: relative;
+    width: 200px;
+    margin-bottom: 30px;
+    padding-top: 15px;
+    border-right: 1px solid var(--color5);
+    overflow: auto;
+}
+
+.box-type {
+    margin: 20px 0 20px 20px;
+}
+
+.box-type:hover {
+    color: var(--color4);
+}
+
+.card {
+    color: rgb(71, 71, 71);
+    margin: 5px;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(248, 248, 248);
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.120);
+    transition: all 0.3s;
+}
+
+.card:hover {
+    color: rgb(32, 32, 32);
+    transform: translateY(-5px);
+    box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.180);
+    transition: all 0.2s;
+}
+
+@media screen and (max-width: 800px){
+    .box {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-height: 500px){
+    .card {
+        height: 160px;
+        width: 160px;
+    }
+}
+
+@media screen and (max-width: 430px){
+    .box {
+        grid-template-columns: 1fr;
+    }
+    
+    .card {
+        height: 160px;
+        width: 160px;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.box > .box-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eeeeee;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.image {
+    height: 70px;
+    width: 70px;
+}
+
+.image-button {
+    width: 40px;
+    animation: rotation 5s linear infinite;
+}
+
+.sub-modal-card > :nth-child(1) {
+    margin: 5px;
+}
+
+.chain {
+    margin-top: 10px;
+    text-align: center;
+    color: var(--color1);
+}
+
+.chain-img {
+    height: 90px;
+    width: 90px;
+    margin: auto;
+}
+
+.chain:nth-child(n+3)::before{
+    content: "\2b07";
+    display: block;
+}
+
+.menu {
+    background-color: white;
+    position: absolute;
+    width: var(--width-input);
+    top: 80px;
+    left: 20px;
+    height: 200px;
+    overflow-y: scroll;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 1px 1px 10px #00000080;
+    z-index: 2;
+}
+
+.menu > option {
+    color: var(--semi-not-highlight);
+    font-weight: normal;
+    text-align: center;
+    margin: 0px 0;
+    padding: 4px;
+    border: 2px solid whitesmoke;
+}
+
+.menu > option:hover {
+    color: var(--color1);
+    background-color: whitesmoke;
+}
+
+.hidden-menu {
+    display: none;
+}
+
+
